@@ -14,15 +14,7 @@ AdminRouter.post("/register", async (req, res) => {
     });
 
   try {
-    let admin = await db.Admin.findOne({ username });
-    // let admin = await db.Admin.find().toArray();
-    // res.json(admin);
-
-    if (admin) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Username already taken" });
-    }
+   
 
     const newpassword = await bcrypt.hash(password, 10);
 

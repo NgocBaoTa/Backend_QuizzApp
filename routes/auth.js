@@ -17,20 +17,6 @@ AuthRouter.post("/register", async (req, res, next) => {
     });
 
   try {
-    let user = await db.User.findOne({ username });
-    if (user) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Username already taken" });
-    }
-
-    // user = await db.Users.findOne({ nickname });
-    // if (user) {
-    //   return res
-    //     .status(400)
-    //     .json({ success: false, message: "Nickname already taken" });
-    // }
-
     const newpassword = await bcrypt.hash(password, 10);
 
     const newUser = await db.User.insertOne({
