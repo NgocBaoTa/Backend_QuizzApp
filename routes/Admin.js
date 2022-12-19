@@ -38,7 +38,7 @@ AdminRouter.post("/register", async (req, res) => {
   }
 });
 
-AdminRouter.post("/login", async (req, res, next) => {
+AdminRouter.post("/login", async (req, res) => {
   const { email, password } = req.body;
   const msgBody = req.body;
   if (!email || !password)
@@ -63,7 +63,7 @@ AdminRouter.post("/login", async (req, res, next) => {
         .json({ success: false, message: "Incorrect email or password" });
     }
 
-    const accessToken = jwt.sign(msgBody, jwtKey);
+    const accessToken = jwt.sign(msgBody, "sha");
     const adminId = admin._id;
     return res.json({ success: true, accessToken, adminId });
   } catch (error) {

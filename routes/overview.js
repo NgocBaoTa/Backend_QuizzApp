@@ -4,8 +4,8 @@ const OverviewRouter = express.Router();
 
 OverviewRouter.get("/", async (req, res) => {
     try {
-        let data = {};
-        data.totalQuizes = await db.Quiz.find({}).count()
+      let data = {};
+        data.totalQuizes = await db.Quiz.find({}).count();
         data.totalUsers = await db.User.find({}).count();
         data.totalAdmins = await db.Admin.find({}).count();
         data.totalCategories = await db.Categories.find({}).count();
