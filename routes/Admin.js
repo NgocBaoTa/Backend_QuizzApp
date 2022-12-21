@@ -57,7 +57,8 @@ AdminRouter.post("/login", async (req, res) => {
 
     const accessToken = jwt.sign(msgBody, "sha");
     const adminId = admin._id;
-    return res.json({ success: true, accessToken, adminId });
+    const adminName = admin.username
+    return res.json({ success: true, accessToken, adminId, adminName });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
   }
